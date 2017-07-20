@@ -5,7 +5,7 @@ class Song
   @@all = []
 
 def initialize(name=nil, artist=nil)
-@@all << self
+# @@all << self
 @name = name
 @artist_name = artist
 end
@@ -20,13 +20,16 @@ end
 
 def save
   self.class.all << self
-  ##binding.pry
 end
 
 def self.create
-  self.new
-
-
+song = self.new
+song.save
+# binding.pry
+##  self.save
+  # self.all << self
+## binding.pry
+song
 end
 
 def self.new_by_name(name)
@@ -35,7 +38,9 @@ def self.new_by_name(name)
 end
 
 def self.create_by_name(name)
- self.new(name)
+song = self.new(name)
+song.save
+song
 # @@all << self
 end
 
@@ -78,8 +83,9 @@ def self.create_from_filename(file)
   array = file.split(" - ")
   array[1].sub!(".mp3", "")
   # binding.pry
-  self.new(array[1], array[0])
-
+  song = self.new(array[1], array[0])
+song.save
+song
   # self.artist_name = array[0]
 
     # binding.pry
